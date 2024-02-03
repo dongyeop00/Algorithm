@@ -3,7 +3,7 @@ package DP;
 
 import java.util.Scanner;
 
-public class Fibonacci {
+public class Baek24416 {
     static int cnt = 0;
     static int dpCnt = 0;
     static int[] memo;
