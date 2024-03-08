@@ -1,3 +1,11 @@
+# BufferedReader 와 Bufferedwriter
+
+- BufferedReader : Scanner와 유사
+- Bufferedwriter : System.out.println()과 유사
+
+<br
+
+
 # 동적 계획법 (Dynamic Programming)
 https://www.acmicpc.net/step/16
 
