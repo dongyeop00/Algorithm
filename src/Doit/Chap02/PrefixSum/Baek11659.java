@@ -14,17 +14,21 @@ public class Baek11659 {
         int N = Integer.parseInt(stringTokenizer.nextToken());
         int M = Integer.parseInt(stringTokenizer.nextToken());
 
-        long[] s = new long[N+1];
+        stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 
-        stringTokenizer = new StringTokenizer(bufferedReader.readLine()); // 다음 줄 이동
+        long[] D = new long[N+1];
+
         for(int i=1; i<=N; i++){
-            s[i] = s[i-1] + Integer.parseInt(stringTokenizer.nextToken());
+            D[i] = D[i-1] + Integer.parseInt(stringTokenizer.nextToken());
+            // 입력 수 배열 : 5 4 3 2 1
+            // 구간 합 배열 : 5 9 12 14 15
         }
-        for(int a=0; a<M; a++){
+
+        for(int i=0; i<M; i++){
             stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-            int i = Integer.parseInt(stringTokenizer.nextToken());
-            int j = Integer.parseInt(stringTokenizer.nextToken());
-            System.out.println(s[j] - s[i-1]);
+            int a = Integer.parseInt(stringTokenizer.nextToken());
+            int b = Integer.parseInt(stringTokenizer.nextToken());
+            System.out.println(D[b] - D[a-1]);
         }
     }
 }
