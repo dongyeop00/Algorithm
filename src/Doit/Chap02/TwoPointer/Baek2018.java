@@ -17,7 +17,18 @@ public class Baek2018 {
         int sum = 1;
 
         while(end_point != N){
-
+            if(sum == N){
+                count++;
+                end_point++;
+                sum += end_point;
+            }else if(sum > N){
+                sum -= start_point;
+                start_point++;
+            }else{
+                end_point++;
+                sum += end_point;
+            }
         }
+        System.out.println(count);
     }
 }
