@@ -1,4 +1,4 @@
-package Doit.Chap02.StackAndQueue;
+package DataStructure.Stack;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,6 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Baek28278_1 {
-
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder stringBuilder = new StringBuilder();
@@ -29,7 +28,7 @@ public class Baek28278_1 {
                     stringBuilder.append(-1 + "\n");
                 }
             }else if(command == 3){ //size
-                    stringBuilder.append(stack.size() + "\n");
+                stringBuilder.append(stack.size() + "\n");
             }else if(command == 4){ //isempty
                 if(!stack.isEmpty()){
                     stringBuilder.append(0 + "\n");
