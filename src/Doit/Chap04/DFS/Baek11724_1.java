@@ -46,7 +46,7 @@ public class Baek11724_1 {
         System.out.println(count);
     }
 
-    static void DFS(int v){
+    private static void DFS(int v){
         if(visited[v]){
             return;
         }
