@@ -3,14 +3,12 @@ package DFS;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.StringTokenizer;
 
-public class Baek2667 {
-    static int N;
-    static int[][] danji;
+public class Baek10026 {
+    static char[][] rgb;
     static boolean[][] visitied;
+    static int N;
     static int[] dx = {-1,0,1,0};
     static int[] dy = {0,1,0,-1};
     static int count;
@@ -20,51 +18,65 @@ public class Baek2667 {
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 
         N = Integer.parseInt(stringTokenizer.nextToken());
-        danji = new int[N][N];
+        rgb = new char[N][N];
         visitied = new boolean[N][N];
 
         for(int i=0; i<N; i++){
             stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-            String str = stringTokenizer.nextToken(); //01010110
+            String str = stringTokenizer.nextToken();
             for(int j=0; j<N; j++){
-                danji[i][j] = str.charAt(j)-'0';
-                // danji[i][j]= str.charAt(j) - '0';
+                rgb[i][j] = str.charAt(j);
             }
         }
 
-        ArrayList<Integer> countList = new ArrayList<>();
 
+        //정상인경우
         for(int x=0; x<N; x++){
             for(int y=0; y<N; y++){
-                if(danji[x][y] == 1 && !visitied[x][y]){
-                    count = 0;
+                if(!visitied[x][y]){
                     DFS(x,y);
-                    countList.add(count);
+                    count++;
                 }
             }
         }
 
-        System.out.println(countList.size());
+        int nomal = count;
+        count =0;
 
-        Collections.sort(countList);
+        visitied = new boolean[N][N];
 
-        for (Integer integer : countList) {
-            System.out.println(integer);
+        //적록색약인경우
+        for(int x=0; x<N; x++){
+            for(int y=0; y<N; y++){
+                if(rgb[x][y] == 'G'){
+                    rgb[x][y] = 'R';
+                }
+            }
         }
 
-    }
+        for(int x=0; x<N; x++){
+            for(int y=0; y<N; y++){
+                if(!visitied[x][y]){
+                    DFS(x,y);
+                    count++;
+                }
+            }
+        }
 
+        int abnomal = count;
+
+        System.out.println(nomal + " " + abnomal);
+    }
     public static void DFS(int x, int y){
         visitied[x][y] = true;
-        count++;
+        char color = rgb[x][y];
 
         for(int i=0; i<4; i++){
             int cx = x + dx[i];
             int cy = y + dy[i];
 
-            // x,y 좌표가 구역 내부에 있으며, 방문하지 않은 구역에 배추가 있을 경우
             if(cx >= 0 && cy >= 0 && cx < N && cy < N){
-                if(danji[cx][cy] ==1 && !visitied[cx][cy]){
+                if(!visitied[cx][cy] && rgb[cx][cy] == color){
                     DFS(cx,cy);
                 }
             }
