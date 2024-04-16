@@ -42,7 +42,6 @@ public class Baek15649 {
                 visited[i] = true; // 해당 노드를 방문상태로 변경
                 arr[depth] = i + 1; // 해당 깊이를 index로 하여 i + 1 값 저장
                 func(depth + 1); // 다음 자식 노드 방문을 위해 depth 1 증가시키면서 재귀호출
-
                 // 자식노드 방문이 끝나고 돌아오면 방문노드를 방문하지 않은 상태로 변경
                 visited[i] = false;
             }
