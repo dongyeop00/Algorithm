@@ -11,6 +11,8 @@ public class Baek2468 {
     static boolean[][] visited;
     static int[][] V;
     static int count = 0;
+    static int answer = 1;
+    static int max;
     static int N;
     static int[] dx = {-1,0,1,0};
     static int[] dy = {0,1,0,-1};
@@ -22,33 +24,34 @@ public class Baek2468 {
 
         N = Integer.parseInt(stringTokenizer.nextToken());
 
-        visited = new boolean[N][N];
         V = new int[N][N];
 
         for(int i=0; i<N; i++){
             stringTokenizer = new StringTokenizer(bufferedReader.readLine());
             for(int j=0; j<N; j++){
-                int temp = Integer.parseInt(stringTokenizer.nextToken());
-                if(temp <= N){
-                    V[i][j] = 0;
-                }else{
-                    V[i][j] = temp;
-                }
+                V[i][j] = Integer.parseInt(stringTokenizer.nextToken());
+                max = Math.max(V[i][j], max);
             }
         }
 
-        for(int i=0; i<N; i++){
-            for (int j = 0; j < N; j++) {
-                if(V[i][j] > 5 && !visited[i][j]) {
-                    DFS(i, j);
-                    count++;
+        for(int h=1; h <= max; h++){
+            visited = new boolean[N][N];
+            count = 0;
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if(V[i][j] > h && !visited[i][j]){
+                        DFS(i,j,h);
+                        count++;
+                    }
                 }
             }
+            answer = Math.max(answer, count);
         }
-        System.out.println(count);
+
+        System.out.println(answer);
     }
 
-    private static void DFS(int x, int y){
+    private static void DFS(int x, int y, int h){
         visited[x][y] = true;
 
         for(int i=0; i<4; i++){
@@ -57,8 +60,8 @@ public class Baek2468 {
 
             //cx >= 0 && cy >= 0 && cx < M && cy < N
             if(newX >= 0 && newY >= 0 && newX < N && newY < N){
-                if(V[newX][newY] > 5 && !visited[newX][newY]) {
-                    DFS(newX, newY);
+                if(V[newX][newY] > h && !visited[newX][newY]) {
+                    DFS(newX, newY,h);
                 }
             }
         }
