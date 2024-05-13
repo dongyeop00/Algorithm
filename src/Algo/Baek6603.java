@@ -1,6 +1,7 @@
-package Graph;
+package Algo;
 
-public class Baek9372 {
+public class Baek6603 {
+
     public static void main(String[] args) {
 
     }
