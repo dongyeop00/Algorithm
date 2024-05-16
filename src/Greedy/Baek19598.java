@@ -12,13 +12,12 @@ public class Baek19598 {
 
         int N = Integer.parseInt(bufferedReader.readLine());
         int[][] meeting = new int[N][2];
-        int count = 1;
         Queue<int[]> queue = new LinkedList<>();
 
         for (int i = 0; i < N; i++) {
             stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-            meeting[i][0] = Integer.parseInt(stringTokenizer.nextToken()); //시작 시간
-            meeting[i][1] = Integer.parseInt(stringTokenizer.nextToken()); //종료 시간
+            meeting[i][0] = Integer.parseInt(stringTokenizer.nextToken()); // 시작 시간
+            meeting[i][1] = Integer.parseInt(stringTokenizer.nextToken()); // 종료 시간
         }
 
         // 강의 끝나는 시간 정렬
@@ -32,27 +31,21 @@ public class Baek19598 {
                 }
             }
         });
+
+
+
         queue.offer(new int[]{meeting[0][0], meeting[0][1]});
-        System.out.println();
-        int meeting_End = -1;
-        for (int i = 0; i <N; i++) {
-            int[] poll = queue.poll();
-            if (poll[0] >= meeting_End) {
-                meeting_End = queue.peek()[1];
-                queue.offer(new int[]{meeting[i][0], meeting[i][1]});
-            }
+        for(int i=1; i<N; i++){
+            int[] array = queue.peek();
+            int value = array[1];
 
-        }
-
-        /*
-                for (int i = 0; i < N; i++) {
-            //
-            if(meeting[i][0] >= meeting_End){
-                meeting_End = meeting[i][1];
-                count++;
+            if(value <= meeting[i][0]){
+                queue.poll();
+                queue.add(new int[]{meeting[i][0], meeting[i][1]});
+            }else{
+                queue.add(new int[]{meeting[i][0], meeting[i][1]});
             }
         }
-         */
 
         System.out.println(queue.size());
     }
