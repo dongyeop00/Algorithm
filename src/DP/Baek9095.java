@@ -1,16 +1,18 @@
 package DP;
 
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Baek9095 {
     /*
     점화식 : dp[n] = dp[n-3] + dp[n-2] + dp[n-1]
      */
     static int[] dp = new int[11];
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-        int n = sc.nextInt();
+        int n = Integer.parseInt(bufferedReader.readLine());
         dp[1] = 1;
         dp[2] = 2;
         dp[3] = 4;
@@ -20,12 +22,10 @@ public class Baek9095 {
         }
 
         for(int i=0; i<n; i++){
-            int d = sc.nextInt();
+            int d = Integer.parseInt(bufferedReader.readLine());
             System.out.println(dp[d]);
         }
-        sc.close();
     }
-
 }
 
 /*
